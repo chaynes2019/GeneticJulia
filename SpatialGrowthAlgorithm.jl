@@ -16,7 +16,7 @@ population? What parameters lead to extinction?
 #Multiple orgs per cell?
 
 gridSize = (9,9)
-endTime = 3
+endTime = 7
 
 mutable struct organism
     genotype
@@ -24,10 +24,10 @@ mutable struct organism
 end
 
 function produceOffspring(org::organism)
-    offSpring = organism(org.genotype,(rand(1:gridSize[1]), rand(1:gridSize[2])))
-    
-    return offSpring
+    return organism(org.genotype,(rand(1:gridSize[1]), rand(1:gridSize[2])))
 end
+
+#Would it be faster to just create one grid and then fill it with zero every time?
 
 function printGrid(population::Array)
     grid = zeros(gridSize)
