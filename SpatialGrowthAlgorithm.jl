@@ -24,7 +24,7 @@ mutable struct organism
 end
 
 function produceOffspring(org::organism)
-    return organism(org.genotype,(rand(1:gridSize[1]), rand(1:gridSize[2])))
+    return organism(org.genotype,[rand(1:gridSize[1]), rand(1:gridSize[2])])
 end
 
 #Would it be faster to just create one grid and then fill it with zero every time?
@@ -32,14 +32,14 @@ end
 function printGrid(population::Array)
     grid = zeros(gridSize)
     for org::organism in population
-        grid[org.position[1],org.position[2]] = 1
+        grid[org.position...] = 1
     end
     for k=1:gridSize[1]
         println(grid[k,:])
     end
 end
 
-population = [organism([0,1],(2,2))]
+population = [organism([0,1],[2,2])]
 printGrid(population)
 for t=1:endTime
     println("== Time Step $t ==")
